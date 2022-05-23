@@ -38,7 +38,7 @@ def sorted_alphanumeric(data: list[str]) -> list[str]:
     return sorted(data, key=alphanum_key)
 
 
-def get_datasets(path_imgs: str, path_labels: str) -> Tuple[tud.Dataset, tud.Dataset]:
+def get_datasets(path_imgs: str, path_labels: str) -> tud.Dataset:
     """
     Get the datasets for the training and the validation set.
 

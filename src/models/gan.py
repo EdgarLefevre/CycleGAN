@@ -73,5 +73,5 @@ class Discriminator(nn.Module):
             nn.Conv2d(512, 1, kernel_size=4, stride=1, padding=1),
         )
 
-    def forward(self, input: torch.tensor) -> torch.Tensor:
+    def forward(self, input: torch.Tensor) -> torch.Tensor:
         return self.main(input)

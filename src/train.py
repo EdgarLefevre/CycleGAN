@@ -51,8 +51,8 @@ def _step(
     Dz: nn.Module,
     Gh: nn.Module,
     Dh: nn.Module,
-    optimD: nn.Optimizer,
-    optimG: nn.Optimizer,
+    optimD: optim.Optimizer,
+    optimG: optim.Optimizer,
 ) -> Tuple[int, int]:
     fake_z = Gz(h)
     fake_h = Gh(z)
@@ -103,7 +103,7 @@ def train(
     Dh: nn.Module,
     dataloader: tud.Dataset,
     num_epochs: int = 5,
-) -> Tuple[list[int], list[int], list[np.array]]:
+) -> Tuple[list, list, list]:
     # Lists to keep track of progress
     img_list = []
     G_losses = []
@@ -168,7 +168,7 @@ def plot_images_generation(img_list: list[np.array]) -> None:
 
 
 def fake_vs_real(
-    dataloader: tud.Dataset, img_list: list[np.array], device: Any
+    dataloader: tud.Dataset, img_list: list, device: Any
 ) -> None:
     # Grab a batch of real images from the dataloader
     real_batch = next(iter(dataloader))
