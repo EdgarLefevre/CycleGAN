@@ -2,7 +2,7 @@
 import argparse
 import os
 import re
-from typing import Tuple, Any
+from typing import Any, Tuple
 
 import numpy as np
 import skimage.io as io
