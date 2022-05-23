@@ -75,7 +75,7 @@ class Cyclegan_dataset(tud.Dataset):
         batch_size: int,
         input_imgh_paths: list[str],
         input_imgz_paths: list[str],
-    ) -> tud.Dataset:
+    ):
         """
         Initialize the dataset.
 
@@ -100,9 +100,9 @@ class Cyclegan_dataset(tud.Dataset):
         Returns tuple (input, target) correspond to batch #idx.
         """
         path_imgh = self.input_imgh_paths[idx]
-        imgh = np.array(io.imread(path_imgh)) / 255
+        imgh = io.imread(path_imgh) / 255
         imgh = torch.Tensor(np.transpose(imgh, (2, 0, 1)))
         path_imgz = self.input_imgz_paths[idx]
-        imgz = np.array(io.imread(path_imgz)) / 255
+        imgz = io.imread(path_imgz) / 255
         imgz = torch.Tensor(np.transpose(imgz, (2, 0, 1)))
         return imgh, imgz

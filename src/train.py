@@ -21,7 +21,7 @@ lr = 0.0002
 beta1 = 0.5
 
 
-def weights_init(m: torch.Tensor) -> None:
+def weights_init(m):
     classname = m.__class__.__name__
     if classname.find("Conv") != -1:
         nn.init.normal_(m.weight.data, 0.0, 0.02)
@@ -168,7 +168,7 @@ def plot_images_generation(img_list: list) -> None:
     plt.show()
 
 
-def fake_vs_real(dataloader: tud.Dataset, img_list: list, device: Any) -> None:
+def fake_vs_real(dataloader: Any, img_list: list, device: Any) -> None:
     # Grab a batch of real images from the dataloader
     real_batch = next(iter(dataloader))
 
