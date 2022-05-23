@@ -132,7 +132,7 @@ def train(
             loop.set_postfix(G_loss=g_loss.item(), D_loss=d_loss.item())
             # Check how the generator is doing by saving G's output on fixed_noise
             if (iters % 500 == 0) or (
-                (epoch == num_epochs - 1) and (i == len(dataloader) - 1)
+                (epoch == num_epochs - 1) and (i == len(dataloader) - 1)  # type: ignore
             ):
                 with torch.no_grad():
                     fake = Gz(h).detach().cpu()

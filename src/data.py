@@ -56,7 +56,7 @@ def get_datasets(path_imgs: str, path_labels: str) -> Any:
     # not good if we need to do metrics
 
     dataset_train = Cyclegan_dataset(1, img_path_list, label_path_list)
-    dataset_train = torch.utils.data.DataLoader(
+    dataset_train = torch.utils.data.DataLoader(  # type: ignore
         dataset_train,
         batch_size=5,
         shuffle=True,
