@@ -167,9 +167,7 @@ def plot_images_generation(img_list: list[np.array]) -> None:
     plt.show()
 
 
-def fake_vs_real(
-    dataloader: tud.Dataset, img_list: list, device: Any
-) -> None:
+def fake_vs_real(dataloader: tud.Dataset, img_list: list, device: Any) -> None:
     # Grab a batch of real images from the dataloader
     real_batch = next(iter(dataloader))
 
