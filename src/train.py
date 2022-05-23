@@ -74,12 +74,12 @@ def _step(
     cycle_consistency_loss_gh = cycle_loss(recons_h, h)
     identity_loss_gh = id_loss(id_h, h)
     G_loss = (
-        square_loss_gz +
-        cycle_consistency_loss_gz +
-        identity_loss_gz +
-        square_loss_gh +
-        cycle_consistency_loss_gh +
-        identity_loss_gh
+        square_loss_gz +  #noqa
+        cycle_consistency_loss_gz + #noqa
+        identity_loss_gz + #noqa
+        square_loss_gh + #noqa
+        cycle_consistency_loss_gh + #noqa
+        identity_loss_gh #noqa
     )
     G_loss.backward()
     optimG.step()
