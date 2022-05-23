@@ -74,12 +74,12 @@ def _step(
     cycle_consistency_loss_gh = cycle_loss(recons_h, h)
     identity_loss_gh = id_loss(id_h, h)
     G_loss = (
-        square_loss_gz +
-        cycle_consistency_loss_gz +
-        identity_loss_gz +
-        square_loss_gh +
-        cycle_consistency_loss_gh +
-        identity_loss_gh
+        square_loss_gz
+        + cycle_consistency_loss_gz
+        + identity_loss_gz
+        + square_loss_gh
+        + cycle_consistency_loss_gh
+        + identity_loss_gh
     )
     G_loss.backward()
     optimG.step()
@@ -138,7 +138,7 @@ def train(
                 img_list.append(vutils.make_grid(fake, padding=2, normalize=True))
             iters += 1
         print(
-            f"Epoch {epoch+1}/{num_epochs}: G_loss: {(epoch_g_loss/i+1):.4f}, D_loss: {(epoch_d_loss/i+1):.4f}"  #noqa
+            f"Epoch {epoch+1}/{num_epochs}: G_loss: {(epoch_g_loss/i+1):.4f}, D_loss: {(epoch_d_loss/i+1):.4f}"  # noqa
         )
         G_losses.append(epoch_g_loss)
         D_losses.append(epoch_d_loss)
