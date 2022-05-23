@@ -21,7 +21,7 @@ lr = 0.0002
 beta1 = 0.5
 
 
-def weights_init(m: nn.Module) -> None:
+def weights_init(m: torch.Tensor) -> None:
     classname = m.__class__.__name__
     if classname.find("Conv") != -1:
         nn.init.normal_(m.weight.data, 0.0, 0.02)
@@ -53,7 +53,7 @@ def _step(
     Dh: nn.Module,
     optimD: optim.Optimizer,
     optimG: optim.Optimizer,
-) -> Tuple[int, int]:
+):
     fake_z = Gz(h)
     fake_h = Gh(z)
     id_h = Gh(h)
@@ -93,6 +93,7 @@ def _step(
     D_loss = (real_loss_dz + fake_loss_dz + real_loss_dh + fake_loss_dh) * 0.5
     D_loss.backward()
     optimD.step()
+    print(type(G_loss))
     return G_loss, D_loss
 
 
@@ -156,7 +157,7 @@ def plot_learning_curves(G_losses: list[int], D_losses: list[int]) -> None:
     plt.show()
 
 
-def plot_images_generation(img_list: list[np.array]) -> None:
+def plot_images_generation(img_list: list) -> None:
     fig = plt.figure(figsize=(8, 8))
     plt.axis("off")
     ims = [[plt.imshow(np.transpose(i, (1, 2, 0)), animated=True)] for i in img_list]

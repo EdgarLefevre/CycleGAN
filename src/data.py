@@ -2,7 +2,7 @@
 import argparse
 import os
 import re
-from typing import Tuple
+from typing import Tuple, Any
 
 import numpy as np
 import skimage.io as io
@@ -38,7 +38,7 @@ def sorted_alphanumeric(data: list[str]) -> list[str]:
     return sorted(data, key=alphanum_key)
 
 
-def get_datasets(path_imgs: str, path_labels: str) -> tud.Dataset:
+def get_datasets(path_imgs: str, path_labels: str) -> Any:
     """
     Get the datasets for the training and the validation set.
 
@@ -75,7 +75,7 @@ class Cyclegan_dataset(tud.Dataset):
         batch_size: int,
         input_imgh_paths: list[str],
         input_imgz_paths: list[str],
-    ) -> None:
+    ) -> tud.Dataset:
         """
         Initialize the dataset.
 
@@ -95,7 +95,7 @@ class Cyclegan_dataset(tud.Dataset):
     def __len__(self) -> int:
         return len(self.input_imgh_paths)
 
-    def __getitem__(self, idx: int) -> Tuple[torch.Tensor, torch.Tensor]:
+    def __getitem__(self, idx: int):
         """
         Returns tuple (input, target) correspond to batch #idx.
         """
