@@ -23,6 +23,7 @@ def list_files_path(path: str) -> list[str]:
         [path + f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
     )
 
+
 def sorted_alphanumeric(data: list[str]) -> list[str]:
     """
     Sort function.
@@ -36,9 +37,8 @@ def sorted_alphanumeric(data: list[str]) -> list[str]:
     alphanum_key = lambda key: [convert(c) for c in re.split("([0-9]+)", key)]  # noqa
     return sorted(data, key=alphanum_key)
 
-def get_datasets(
-    path_imgs: str, path_labels: str
-) -> Tuple[tud.Dataset, tud.Dataset]:
+
+def get_datasets(path_imgs: str, path_labels: str) -> Tuple[tud.Dataset, tud.Dataset]:
     """
     Get the datasets for the training and the validation set.
 
@@ -102,10 +102,10 @@ class Cyclegan_dataset(tud.Dataset):
         try:
             path_imgh = self.input_imgh_paths[idx]
             imgh = np.array(io.imread(path_imgh)) / 255
-            imgh = torch.Tensor(np.transpose(imgh, (2,0,1)))
+            imgh = torch.Tensor(np.transpose(imgh, (2, 0, 1)))
             path_imgz = self.input_imgz_paths[idx]
             imgz = np.array(io.imread(path_imgz)) / 255
-            imgz = torch.Tensor(np.transpose(imgz, (2,0,1)))
+            imgz = torch.Tensor(np.transpose(imgz, (2, 0, 1)))
         except:
             print(f"Error with {path_imgh}")
             print(f"Error with {path_imgz}")
