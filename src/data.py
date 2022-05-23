@@ -2,12 +2,12 @@
 import argparse
 import os
 import re
+from typing import Tuple
 
 import numpy as np
 import skimage.io as io
 import torch
 import torch.utils.data as tud
-from typing import Tuple
 
 
 def list_files_path(path: str) -> list[str]:

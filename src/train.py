@@ -1,11 +1,10 @@
 import itertools
 import random
-from typing import Tuple, Any
+from typing import Any, Tuple
 
 import matplotlib.animation as animation
 import matplotlib.pyplot as plt
 import numpy as np
-import src.data as data
 import torch
 import torch.nn as nn
 import torch.nn.parallel
@@ -14,6 +13,8 @@ import torch.utils.data as tud
 import torchvision.utils as vutils
 from IPython.display import HTML
 from tqdm import tqdm
+
+import src.data as data
 from src.models import gan
 
 lr = 0.0002

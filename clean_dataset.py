@@ -1,6 +1,8 @@
 import os
+
 import numpy as np
 import skimage.io as io
+
 
 def list_files_path(path: str) -> list[str]:
     """
