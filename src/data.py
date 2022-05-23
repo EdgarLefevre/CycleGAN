@@ -99,17 +99,10 @@ class Cyclegan_dataset(tud.Dataset):
         """
         Returns tuple (input, target) correspond to batch #idx.
         """
-        try:
-            path_imgh = self.input_imgh_paths[idx]
-            imgh = np.array(io.imread(path_imgh)) / 255
-            imgh = torch.Tensor(np.transpose(imgh, (2, 0, 1)))
-            path_imgz = self.input_imgz_paths[idx]
-            imgz = np.array(io.imread(path_imgz)) / 255
-            imgz = torch.Tensor(np.transpose(imgz, (2, 0, 1)))
-        except:
-            print(f"Error with {path_imgh}")
-            print(f"Error with {path_imgz}")
-            print(imgz.shape)
-            print(imgh.shape)
-            raise
+        path_imgh = self.input_imgh_paths[idx]
+        imgh = np.array(io.imread(path_imgh)) / 255
+        imgh = torch.Tensor(np.transpose(imgh, (2, 0, 1)))
+        path_imgz = self.input_imgz_paths[idx]
+        imgz = np.array(io.imread(path_imgz)) / 255
+        imgz = torch.Tensor(np.transpose(imgz, (2, 0, 1)))
         return imgh, imgz
