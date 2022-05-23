@@ -68,6 +68,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
+          pip install mypy
       - name: MyPy
         run: |
           mypy src/
