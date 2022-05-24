@@ -14,7 +14,7 @@ Straight forward implementation of [CycleGAN](https://arxiv.org/pdf/1703.10593v7
 git clone git@github.com:EdgarLefevre/CycleGAN.git
 cd CycleGAN
 pip install -r requirements.txt # if you use pip
-conda env -f environment.yml # if you use conda
+conda env create -f environment.yml # if you use conda
 ```
 
 ## Usage

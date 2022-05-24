@@ -53,7 +53,7 @@ def _step(
     Dh: nn.Module,
     optimD: optim.Optimizer,
     optimG: optim.Optimizer,
-):
+) -> tuple[torch.Tensor, torch.Tensor]:
     fake_z = Gz(h)
     fake_h = Gh(z)
     id_h = Gh(h)
@@ -93,7 +93,6 @@ def _step(
     D_loss = (real_loss_dz + fake_loss_dz + real_loss_dh + fake_loss_dh) * 0.5
     D_loss.backward()
     optimD.step()
-    print(type(G_loss))
     return G_loss, D_loss
 
 
