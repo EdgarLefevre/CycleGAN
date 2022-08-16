@@ -101,8 +101,12 @@ class Cyclegan_dataset(tud.Dataset):
         """
         path_imgh = self.input_imgh_paths[idx]
         imgh = io.imread(path_imgh) / 255
+        if len(np.shape(imgh)) == 2:
+            imgh = np.expand_dims(imgh, axis=2)
         imgh = torch.Tensor(np.transpose(imgh, (2, 0, 1)))
         path_imgz = self.input_imgz_paths[idx]
         imgz = io.imread(path_imgz) / 255
+        if len(np.shape(imgz)) == 2:
+            imgz = np.expand_dims(imgz, axis=2)
         imgz = torch.Tensor(np.transpose(imgz, (2, 0, 1)))
         return imgh, imgz

@@ -191,6 +191,7 @@ def fake_vs_real(dataloader: Any, img_list: list, device: Any) -> None:
     plt.title("Fake Images")
     plt.imshow(np.transpose(img_list[-1], (1, 2, 0)))
     plt.show()
+    plt.imsave()
 
 
 if __name__ == "__main__":
