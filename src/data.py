@@ -55,9 +55,13 @@ def get_datasets(path_imgs: str, path_labels: str) -> Any:
     label_path_list = list_files_path(path_labels)
 
     if len(img_path_list) > len(label_path_list):
-        label_path_list, img_path_list = same_number_item(label_path_list, img_path_list)
+        label_path_list, img_path_list = same_number_item(
+            label_path_list, img_path_list
+        )
     else:
-        img_path_list, label_path_list = same_number_item(img_path_list, label_path_list)
+        img_path_list, label_path_list = same_number_item(
+            img_path_list, label_path_list
+        )
     # not good if we need to do metrics
 
     dataset_train = Cyclegan_dataset(1, img_path_list, label_path_list)
@@ -70,8 +74,10 @@ def get_datasets(path_imgs: str, path_labels: str) -> Any:
     return dataset_train
 
 
-def same_number_item(ds_short, ds_large):  # todo: augment short ds instead of cutting large ds
-    return ds_short, ds_large[:len(ds_short)]
+def same_number_item(
+    ds_short, ds_large
+):  # todo: augment short ds instead of cutting large ds
+    return ds_short, ds_large[: len(ds_short)]
 
 
 class Cyclegan_dataset(tud.Dataset):
@@ -80,10 +86,10 @@ class Cyclegan_dataset(tud.Dataset):
     """
 
     def __init__(
-            self,
-            batch_size: int,
-            input_imgh_paths: list[str],
-            input_imgz_paths: list[str],
+        self,
+        batch_size: int,
+        input_imgh_paths: list[str],
+        input_imgz_paths: list[str],
     ):
         """
         Initialize the dataset.

@@ -198,7 +198,7 @@ if __name__ == "__main__":
     dataloader = data.get_datasets(
         # "dataset/horse2zebra/trainA/", "dataset/horse2zebra/trainB/"
         "/home/edgar/Documents/Datasets/Unsupervised_cell_and_spot_segmentation/Data_Eduardo/cell/patched/",
-        "/home/edgar/Documents/Datasets/BBBC039/images_resized/"
+        "/home/edgar/Documents/Datasets/BBBC039/images_resized/",
     )
     device = torch.device("cuda")
     # Create the generator

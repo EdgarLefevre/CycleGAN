@@ -66,6 +66,7 @@ class Discriminator(nn.Module):
     """
     conv, leaky relu, instance norm2d
     """
+
     def __init__(self):
         super(Discriminator, self).__init__()
         self.main = nn.Sequential(
