@@ -53,6 +53,11 @@ def get_datasets(path_imgs: str, path_labels: str) -> Any:
     """
     img_path_list = list_files_path(path_imgs)
     label_path_list = list_files_path(path_labels)
+
+    if len(img_path_list) > len(label_path_list):
+        label_path_list, img_path_list = same_number_item(label_path_list, img_path_list)
+    else:
+        img_path_list, label_path_list = same_number_item(img_path_list, label_path_list)
     # not good if we need to do metrics
 
     dataset_train = Cyclegan_dataset(1, img_path_list, label_path_list)
@@ -65,16 +70,20 @@ def get_datasets(path_imgs: str, path_labels: str) -> Any:
     return dataset_train
 
 
+def same_number_item(ds_short, ds_large):  # todo: augment short ds instead of cutting large ds
+    return ds_short, ds_large[:len(ds_short)]
+
+
 class Cyclegan_dataset(tud.Dataset):
     """
     Dataset for the DeepMeta model.
     """
 
     def __init__(
-        self,
-        batch_size: int,
-        input_imgh_paths: list[str],
-        input_imgz_paths: list[str],
+            self,
+            batch_size: int,
+            input_imgh_paths: list[str],
+            input_imgz_paths: list[str],
     ):
         """
         Initialize the dataset.
@@ -90,7 +99,8 @@ class Cyclegan_dataset(tud.Dataset):
         self.img_size = 256
         self.input_imgh_paths = input_imgh_paths
         self.input_imgz_paths = input_imgz_paths
-        print(f"Nb of images : {len(input_imgh_paths)}")
+        print(f"Nb of images h : {len(input_imgh_paths)}")
+        print(f"Nb of images z : {len(input_imgz_paths)}")
 
     def __len__(self) -> int:
         return len(self.input_imgh_paths)

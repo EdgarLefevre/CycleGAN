@@ -31,7 +31,7 @@ class Generator(nn.Module):
     def __init__(self):
         super(Generator, self).__init__()
         self.down_path = nn.Sequential(
-            nn.Conv2d(3, 64, kernel_size=7, stride=1, padding=3),
+            nn.Conv2d(1, 64, kernel_size=7, stride=1, padding=3),
             nn.Conv2d(64, 128, kernel_size=3, stride=2, padding=1),
             nn.Conv2d(128, 256, kernel_size=3, stride=2, padding=1),
         )
@@ -53,7 +53,7 @@ class Generator(nn.Module):
             nn.ConvTranspose2d(
                 128, 64, kernel_size=3, stride=2, padding=1, output_padding=1
             ),
-            nn.Conv2d(64, 3, kernel_size=7, stride=1, padding=3),
+            nn.Conv2d(64, 1, kernel_size=7, stride=1, padding=3),
         )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
@@ -63,14 +63,23 @@ class Generator(nn.Module):
 
 
 class Discriminator(nn.Module):
+    """
+    conv, leaky relu, instance norm2d
+    """
     def __init__(self):
         super(Discriminator, self).__init__()
         self.main = nn.Sequential(
-            nn.Conv2d(3, 64, kernel_size=4, stride=2, padding=1),
-            nn.Conv2d(64, 128, kernel_size=4, stride=2, padding=1),
-            nn.Conv2d(128, 256, kernel_size=4, stride=2, padding=1),
-            nn.Conv2d(256, 512, kernel_size=4, stride=1, padding=1),
-            nn.Conv2d(512, 1, kernel_size=4, stride=1, padding=1),
+            nn.Conv2d(1, 64, kernel_size=4, stride=2, padding=0),
+            nn.ReLU(),
+            nn.Conv2d(64, 128, kernel_size=4, stride=2, padding=0),
+            nn.ReLU(),
+            nn.Conv2d(128, 256, kernel_size=4, stride=2, padding=0),
+            nn.ReLU(),
+            nn.ZeroPad2d(1),
+            nn.Conv2d(256, 512, kernel_size=4, stride=1, padding="valid"),
+            nn.ReLU(),
+            nn.ZeroPad2d(1),
+            nn.Conv2d(512, 1, kernel_size=4, stride=1, padding="valid"),
         )
 
     def forward(self, input: torch.Tensor) -> torch.Tensor:
