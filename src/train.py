@@ -1,5 +1,6 @@
 import itertools
 import random
+import os
 from typing import Any, Tuple
 
 import matplotlib.animation as animation
@@ -17,6 +18,12 @@ from tqdm import tqdm
 import src.data as data
 from src.models import gan
 
+
+if os.uname()[1] == "iss":
+    BASE_PATH = "/home/edgar/Documents/Datasets/deepmeta/Data/3classes_metas/"
+else:
+    BASE_PATH = "/home/elefevre/Datasets/deepmeta/3classesv2/3classesv2_full/"
+    os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 lr = 0.0002
 beta1 = 0.5
 
@@ -212,6 +219,6 @@ if __name__ == "__main__":
     Dz.apply(weights_init)
     Dh.apply(weights_init)
 
-    lossG, lossD, img_list = train(Gz, Gh, Dz, Dh, dataloader, 10)
+    lossG, lossD, img_list = train(Gz, Gh, Dz, Dh, dataloader, 5)
     plot_images_generation(img_list)
     fake_vs_real(dataloader, img_list, device)

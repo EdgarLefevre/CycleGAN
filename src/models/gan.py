@@ -69,17 +69,25 @@ class Discriminator(nn.Module):
     def __init__(self):
         super(Discriminator, self).__init__()
         self.main = nn.Sequential(
-            nn.Conv2d(1, 64, kernel_size=4, stride=2, padding=0),
-            nn.ReLU(),
-            nn.Conv2d(64, 128, kernel_size=4, stride=2, padding=0),
-            nn.ReLU(),
-            nn.Conv2d(128, 256, kernel_size=4, stride=2, padding=0),
-            nn.ReLU(),
-            nn.ZeroPad2d(1),
-            nn.Conv2d(256, 512, kernel_size=4, stride=1, padding="valid"),
-            nn.ReLU(),
-            nn.ZeroPad2d(1),
-            nn.Conv2d(512, 1, kernel_size=4, stride=1, padding="valid"),
+            nn.Conv2d(1, 64, kernel_size=4, stride=2, padding=1),
+            nn.InstanceNorm2d(64),
+            nn.LeakyReLU(),
+
+            nn.Conv2d(64, 128, kernel_size=4, stride=2, padding=1),
+            nn.InstanceNorm2d(128),
+            nn.LeakyReLU(),
+
+            nn.Conv2d(128, 256, kernel_size=4, stride=2, padding=1),
+            nn.InstanceNorm2d(256),
+            nn.LeakyReLU(),
+            # nn.ZeroPad2d(1),
+
+            nn.Conv2d(256, 512, kernel_size=4, stride=2, padding=1),
+            nn.InstanceNorm2d(512),
+            nn.LeakyReLU(),
+            # nn.ZeroPad2d(1),
+
+            nn.Conv2d(512, 1, kernel_size=4, stride=1, padding=1),
         )
 
     def forward(self, input: torch.Tensor) -> torch.Tensor:
