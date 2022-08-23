@@ -1,6 +1,6 @@
 import itertools
-import random
 import os
+import random
 from typing import Any, Tuple
 
 import matplotlib.animation as animation
@@ -17,7 +17,6 @@ from tqdm import tqdm
 
 import src.data as data
 from src.models import gan
-
 
 if os.uname()[1] == "iss":
     BASE_PATH = "/home/edgar/Documents/Datasets/deepmeta/Data/3classes_metas/"
