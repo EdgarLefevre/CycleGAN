@@ -19,9 +19,9 @@ import src.data as data
 from src.models import gan
 
 if os.uname()[1] == "iss":
-    BASE_PATH = "/home/edgar/Documents/Datasets/deepmeta/Data/3classes_metas/"
+    BASE_PATH = "/home/edgar/Documents/Datasets/"
 else:
-    BASE_PATH = "/home/elefevre/Datasets/deepmeta/3classesv2/3classesv2_full/"
+    BASE_PATH = "/home/elefevre/Datasets/"
     os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 lr = 0.0002
 beta1 = 0.5
@@ -203,8 +203,8 @@ def fake_vs_real(dataloader: Any, img_list: list, device: Any) -> None:
 if __name__ == "__main__":
     dataloader = data.get_datasets(
         # "dataset/horse2zebra/trainA/", "dataset/horse2zebra/trainB/"
-        "/home/edgar/Documents/Datasets/Unsupervised_cell_and_spot_segmentation/Data_Eduardo/cell/patched/",
-        "/home/edgar/Documents/Datasets/BBBC039/images_resized/",
+        "Unsupervised_cell_and_spot_segmentation/Data_Eduardo/cell/patched/",
+        "BBBC039/images_resized/",
     )
     device = torch.device("cuda")
     # Create the generator
