@@ -202,7 +202,8 @@ def fake_vs_real(dataloader: Any, img_list: list, device: Any) -> None:
 
 if __name__ == "__main__":
     dataloader = data.get_datasets(
-        "dataset/horse2zebra/trainA/", "dataset/horse2zebra/trainB/"
+        "dataset/horse2zebra/trainA/",
+        "dataset/horse2zebra/trainB/"
         # "Unsupervised_cell_and_spot_segmentation/Data_Eduardo/cell/patched/",
         # "BBBC039/images_resized/",
     )
