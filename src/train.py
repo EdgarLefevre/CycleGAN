@@ -202,9 +202,9 @@ def fake_vs_real(dataloader: Any, img_list: list, device: Any) -> None:
 
 if __name__ == "__main__":
     dataloader = data.get_datasets(
-        # "dataset/horse2zebra/trainA/", "dataset/horse2zebra/trainB/"
-        "Unsupervised_cell_and_spot_segmentation/Data_Eduardo/cell/patched/",
-        "BBBC039/images_resized/",
+        "dataset/horse2zebra/trainA/", "dataset/horse2zebra/trainB/"
+        # "Unsupervised_cell_and_spot_segmentation/Data_Eduardo/cell/patched/",
+        # "BBBC039/images_resized/",
     )
     device = torch.device("cuda")
     # Create the generator
@@ -212,6 +212,7 @@ if __name__ == "__main__":
     Gh = gan.Generator().to(device)
     Gz.apply(weights_init)
     Gh.apply(weights_init)
+
     # Create the Discriminator
     Dz = gan.Discriminator().to(device)
     Dh = gan.Discriminator().to(device)
